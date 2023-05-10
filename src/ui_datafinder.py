@@ -5,7 +5,6 @@ import re
 import datetime
 
 from statsmodels.tsa.seasonal import seasonal_decompose
-from tensorflow.keras.models import load_model
 from sklearn.preprocessing import MinMaxScaler
 
 
