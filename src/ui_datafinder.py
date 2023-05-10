@@ -12,7 +12,7 @@ class Forecaster:
         # model_path = path + "/models/matlab_basic_nn_0"
         # self.model = load_model(model_path)
 
-        file_path = path + "/csvs/matlab_temp_shortened.xlsx"
+        file_path = path + "/matlab_temp_shortened.xlsx"
         target = "SYSLoad"
         trend_type = "additive"
         future = 0
@@ -71,7 +71,7 @@ class availablemodes:
     def find_datasets(self):
 
         folder_path = os.getcwd()
-        csv_directory = folder_path + "/csvs"
+        csv_directory = folder_path
         files = os.listdir(csv_directory)
         files = " ".join(files)
         datasets = re.findall(" [a-zA-Z]+_performances_[0-9]+.csv", files)
@@ -141,7 +141,7 @@ class datasets:
     def get_datasets(self):
 
         folder_path = os.getcwd()
-        csv_directory = folder_path + r"\csvs"
+        csv_directory = folder_path
         files = os.listdir(csv_directory)
         files = " ".join(files)
         datasets = re.findall(" [a-zA-Z]+_performances_[0-9]+.csv", files)
