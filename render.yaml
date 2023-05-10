@@ -1,7 +1,7 @@
 services:
   # See https://render.com/docs/blueprint-spec for more info on render blueprints
   - type: web
-    name: 4811-Thesis_Energy-Forecaster-DG
+    name: 4811-Thesis-Energy-Forecaster-DG
     env: python
     plan: free
     # A requirements.txt file must exist
