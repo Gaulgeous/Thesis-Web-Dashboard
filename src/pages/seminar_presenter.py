@@ -224,7 +224,6 @@ def update_consumption_label(_, holiday, humidity, drybulb, dewpoint, wetbulb):
         dewpoint = int(dewpoint)
         wetbulb = int(wetbulb)
 
-        input = forecaster.create_input(humidity, holiday, drybulb, dewpoint, wetbulb, 10)
         prediction = forecaster.predict(input)
 
         prediction = np.median(targets)
