@@ -12,7 +12,7 @@ class Forecaster:
         # model_path = path + "/models/matlab_basic_nn_0"
         # self.model = load_model(model_path)
 
-        file_path = path + "/csvs/matlab_temp_shortened.xlsx"
+        file_path = path + "src/csvs/matlab_temp_shortened.xlsx"
         target = "SYSLoad"
         trend_type = "additive"
         future = 0
