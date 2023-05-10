@@ -4,6 +4,7 @@ import os
 import re
 import datetime
 
+
 class Forecaster:
 
     def __init__(self):
@@ -16,11 +17,14 @@ class Forecaster:
         trend_type = "additive"
         future = 0
         epd = 48
-        self.data, self.targets = self.feature_adder(file_path, target, trend_type, future, epd)
+        self.data = pd.read_excel(file_path).set_index("Date")
+        self.targets = self.data[target].reset_index(drop=True)
+        self.targets = self.targets.dropna(how='any', axis='rows')
 
 
     def return_data(self):
         return self.data[['DryBulb', 'WetBulb', 'Humidity', 'ElecPrice', 'DewPnt']]
+
 
     def predict(self, input):
         # return self.model.predict(input)[0][0]
@@ -194,19 +198,19 @@ class datasets:
         elif period == 7:
             dataframe = self.metrics_7.get(set_name)
 
-        if baseline:
-            baseline_row = dataframe[dataframe['Model'] == "Baseline"]
-            model_row = dataframe[dataframe['Model'] == model]
-            rows = pd.concat([baseline_row, model_row], ignore_index=True)
-        else:
-            
-            try:
+        try:
+            if baseline:
+                baseline_row = dataframe[dataframe['Model'] == "Baseline"]
+                model_row = dataframe[dataframe['Model'] == model]
+                rows = pd.concat([baseline_row, model_row], ignore_index=True)
+            else:
+                
                 rows = dataframe[dataframe['Model'] == model]
-            except TypeError:
-                dic = {'Model': ["Basic_nn", "Basic_nn", "Basic_nn", "Basic_nn"], 
-                       'Metric': ["RMSE", "MAE", "MAPE", "R2"], 
-                       "Value": [6.073267342947245, 4.335298909493952, 0.0482924031448176, 0.8043028184379144]}
-                rows = pd.DataFrame.from_dict(dic)
+        except TypeError:
+            dic = {'Model': ["Basic_nn", "Basic_nn", "Basic_nn", "Basic_nn"], 
+                    'Metric': ["RMSE", "MAE", "MAPE", "R2"], 
+                    "Value": [6.073267342947245, 4.335298909493952, 0.0482924031448176, 0.8043028184379144]}
+            rows = pd.DataFrame.from_dict(dic)
 
         return rows
     
